@@ -1,1 +1,1 @@
-example file from NAMD tutorial
+Using example files and parameter from NAMD official guidelines for testing

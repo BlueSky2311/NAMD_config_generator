@@ -58,7 +58,7 @@ def main():
     parser.add_argument('--output-dir', '-o', default='.',
                         help='Directory to save generated NAMD files (default: current directory)')
     parser.add_argument('--stages', '-s', nargs='+', 
-                        choices=['minimization', 'heating', 'equilibration', 'production', 'all'],
+                        choices=['minimization', 'equilibration', 'production', 'all'],
                         default=['all'],
                         help='Stages to generate (default: all)')
     parser.add_argument('--temperatures', '-T', nargs='+', type=float,
@@ -89,7 +89,7 @@ def main():
     # Determine which stages to generate
     stages_to_generate = []
     if 'all' in args.stages:
-        stages_to_generate = ['minimization', 'heating', 'equilibration', 'production']
+        stages_to_generate = ['minimization', 'equilibration', 'production']
     else:
         stages_to_generate = args.stages
     
@@ -101,9 +101,8 @@ def main():
     # Define stage filenames
     stage_filenames = {
         'minimization': '01_Minimization.namd',
-        'heating': '02_Heating.namd',
-        'equilibration': '03_Equilibration.namd',
-        'production': '04_Production_npt.namd'
+        'equilibration': '02_Equilibration.namd',
+        'production': '03_Production_npt.namd'
     }
     
     for temp in temperatures:

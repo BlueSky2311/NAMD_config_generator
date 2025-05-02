@@ -1,7 +1,7 @@
 # Common settings
 common:
   structure_file: "ubq_wb.psf"
-  parameters_file: "working/par_all27_prot_lipid.inp"
+  parameters_file: "/data01/genbiolab/mdanh/MD_workplace/working/par_all27_prot_lipid.inp"
   # Uncomment and modify this to use multiple parameter files
   #parameters_files:
      #- "par_all27_prot_lipid.inp"
@@ -46,36 +46,19 @@ minimization:
   output_pressure: 100
   num_minimize_steps: 10000
 
-# Heating stage config
-heating:
-  stage: heating
-  job_description: "Heating of molecules"
-  coordinates_file: "final_min.coor"
-  extended_system_file: "final_min.xsc"
-  output_name: "final_heat"
-  steps_per_cycle: 10
-  restart_freq: 500
-  dcd_freq: 200
-  output_energies: 100
-  output_pressure: 100
-  num_steps: 30000
-  initial_temperature: 0
-  reassign_freq: 1
-  reassign_incr: 0.01
-
 # Equilibration stage config
 equilibration:
   stage: equilibration
   job_description: "Equilibration of molecules"
-  coordinates_file: "final_heat.coor"
-  extended_system_file: "final_heat.xsc"
+  coordinates_file: "final_min.coor"
+  extended_system_file: "final_min.xsc"
   output_name: "final_eq"
   steps_per_cycle: 20
   restart_freq: 10000
   dcd_freq: 5000
   output_energies: 500
   output_pressure: 500
-  num_steps: 1000000
+  num_steps: 10000
 
 # Production stage config
 production:

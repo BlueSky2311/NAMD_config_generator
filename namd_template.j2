@@ -53,7 +53,11 @@ switchdist         {{ switch_dist }}
 pairlistdist       {{ pairlist_dist }}
 
 # Integrator Parameters
+{% if stage == 'equilibration' %}
+timestep           0.5  ;# 0.5fs/step for equilibration
+{% else %}
 timestep           {{ timestep }}  ;# 2fs/step
+{% endif %}
 rigidBonds         all  ;# needed for 2fs steps
 nonbondedFreq      {{ nonbonded_freq }}
 fullElectFrequency {{ full_elect_frequency }}  
@@ -123,13 +127,7 @@ binaryrestart      no
 # Minimization
 minimize           {{ num_minimize_steps }}
 {% else %}
-# {% if stage == 'heating' %}Heating{% elif stage == 'equilibration' %}Equilibration{% else %}Production{% endif %}
+# {% if stage == 'equilibration' %}Equilibration{% else %}Production{% endif %}
 seed               {{ seed }}             # Random number seed used to generate initial Maxwell distribution of velocities
 numsteps           {{ num_steps }}        # Number of integration steps
-{% endif %}
-{% if stage == 'heating' %}
-temperature        {{ initial_temperature }}        # Initial velocity distribution is performed to meet this Initial temperature (in K)
-reassignFreq       {{ reassign_freq }}             # Number of steps between reassignment of velocities
-reassignIncr       {{ reassign_incr }}             # Increment used to adjust temperature during temperature reassignment
-reassignHold       $temperature          # The value of temperature to be kept after heating is completed
 {% endif %} 

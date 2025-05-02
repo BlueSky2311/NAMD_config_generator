@@ -9,9 +9,8 @@ This system allows you to generate NAMD configuration files for different stages
 - `generate_namd.py`: Python script to generate NAMD files from the template and configuration
 - Original NAMD files:
   - `01_Minimization.namd`: Minimization stage configuration
-  - `02_Heating.namd`: Heating stage configuration
-  - `03_Equilibration.namd`: Equilibration stage configuration
-  - `04_Production_npt.namd`: Production stage configuration
+  - `02_Equilibration.namd`: Equilibration stage configuration
+  - `03_Production_npt.namd`: Production stage configuration
 
 ## Requirements
 
@@ -42,7 +41,7 @@ To generate NAMD configuration files:
 - `--config`, `-c`: Path to the YAML configuration file (default: namd_config.yaml)
 - `--template`, `-t`: Path to the Jinja2 template file (default: namd_template.j2)
 - `--output-dir`, `-o`: Directory to save generated NAMD files (default: current directory)
-- `--stages`, `-s`: Stages to generate. Choices: minimization, heating, equilibration, production, all (default: all)
+- `--stages`, `-s`: Stages to generate. Choices: minimization, equilibration, production, all (default: all)
 - `--temperatures`, `-T`: List of temperatures to generate files for (overrides the temperature in the config file)
 - `--temp-prefix`, `-p`: Add temperature as prefix to output directories (T{temp})
 - `--no-organize`, `-n`: Disable automatic organization into subfolder based on PSF name
@@ -60,9 +59,8 @@ This will create a folder structure based on the PSF filename:
 ./
 └── psf_basename/
     ├── 01_Minimization.namd
-    ├── 02_Heating.namd
-    ├── 03_Equilibration.namd
-    └── 04_Production_npt.namd
+    ├── 02_Equilibration.namd
+    └── 03_Production_npt.namd
 ```
 
 Generate only the minimization stage configuration:
@@ -74,7 +72,7 @@ Generate only the minimization stage configuration:
 Generate multiple specific stages:
 
 ```bash
-./generate_namd.py --stages minimization heating
+./generate_namd.py --stages minimization equilibration
 ```
 
 Output files to a different directory:
@@ -127,15 +125,13 @@ simulations/
 ├── T300/
 │   └── psf_basename/
 │       ├── 01_Minimization.namd
-│       ├── 02_Heating.namd
-│       ├── 03_Equilibration.namd
-│       └── 04_Production_npt.namd
+│       ├── 02_Equilibration.namd
+│       └── 03_Production_npt.namd
 └── T320/
     └── psf_basename/
         ├── 01_Minimization.namd
-        ├── 02_Heating.namd
-        ├── 03_Equilibration.namd
-        └── 04_Production_npt.namd
+        ├── 02_Equilibration.namd
+        └── 03_Production_npt.namd
 ```
 
 ## Multiple Temperature Simulations
@@ -153,10 +149,10 @@ To generate configuration files for multiple temperature simulations:
 3. You can combine with other options:
 
 ```bash
-./generate_namd.py --temperatures 300 320 --stages minimization heating --output-dir simulations/
+./generate_namd.py --temperatures 300 320 --stages minimization --output-dir simulations/
 ```
 
-This would create directories like `simulations/T300/psf_basename/` and `simulations/T320/psf_basename/` with only the minimization and heating files.
+This would create directories like `simulations/T300/psf_basename/` and `simulations/T320/psf_basename/` with only the minimization files.
 
 ## Customizing NAMD Parameters
 
@@ -164,7 +160,6 @@ Edit the `namd_config.yaml` file to customize parameters for your simulation. Th
 
 - `common`: Parameters shared across all stages
 - `minimization`: Parameters specific to the minimization stage
-- `heating`: Parameters specific to the heating stage
 - `equilibration`: Parameters specific to the equilibration stage
 - `production`: Parameters specific to the production stage
 
