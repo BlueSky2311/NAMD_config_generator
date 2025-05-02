@@ -30,7 +30,6 @@ common:
   langevin_piston_target: 1.01325
   langevin_piston_period: 100.0
   langevin_piston_decay: 50.0
-  seed: 1010
   first_timestep: 0
 
 # Minimization stage config

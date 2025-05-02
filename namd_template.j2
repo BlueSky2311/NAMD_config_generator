@@ -128,6 +128,5 @@ binaryrestart      no
 minimize           {{ num_minimize_steps }}
 {% else %}
 # {% if stage == 'equilibration' %}Equilibration{% else %}Production{% endif %}
-seed               {{ seed }}             # Random number seed used to generate initial Maxwell distribution of velocities
 numsteps           {{ num_steps }}        # Number of integration steps
 {% endif %} 
