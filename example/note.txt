@@ -1,1 +1,1 @@
-
+example file from NAMD tutorial
