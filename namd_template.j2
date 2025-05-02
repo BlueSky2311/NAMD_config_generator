@@ -37,7 +37,9 @@ parameters         {{ param_file }}
 {% else %}
 parameters         {{ parameters_file }}
 {% endif %}
+{% if stage != 'heating' %}
 temperature        $temperature
+{% endif %}
 
 # Force-Field Parameters
 exclude            scaled1-4
