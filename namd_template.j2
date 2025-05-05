@@ -128,5 +128,6 @@ binaryrestart      no
 minimize           {{ num_minimize_steps }}
 {% else %}
 # {% if stage == 'equilibration' %}Equilibration{% else %}Production{% endif %}
+
 numsteps           {{ num_steps }}        # Number of integration steps
 {% endif %} 
