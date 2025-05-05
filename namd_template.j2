@@ -37,7 +37,7 @@ parameters         {{ param_file }}
 {% else %}
 parameters         {{ parameters_file }}
 {% endif %}
-{% if stage != 'heating' %}
+{% if stage != 'production' %}
 temperature        $temperature
 {% endif %}
 
